@@ -1,16 +1,15 @@
 import firebase from '@firebase/app'
 
 
-const config = {
-    apiKey: "AIzaSyB6s7U6qxr8xM-QFw5qgU6a-Cevh7PJ3lU",
-    authDomain: "app-mobile-2658e.firebaseapp.com",
-    projectId: "app-mobile-2658e",
-    storageBucket: "app-mobile-2658e.appspot.com",
-    messagingSenderId: "1059877352930",
-    appId: "1:1059877352930:web:66dd8ea618fdb2704fb5bb",
-    measurementId: "G-ELSPR42483"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyDxaLYtK9dOB5wpew3JMngmb7WP7O-i0-A",
+  authDomain: "creditsimulation-aff6d.firebaseapp.com",
+  projectId: "creditsimulation-aff6d",
+  storageBucket: "creditsimulation-aff6d.appspot.com",
+  messagingSenderId: "300317221665",
+  appId: "1:300317221665:web:7e78849d0f07d3908c9460"
+};
 
-  firebase.initializeApp(config);
+  // firebase.initializeApp(firebaseConfig);
 
   export default firebase;

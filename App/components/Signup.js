@@ -17,30 +17,7 @@ export function SignUp(navigation) {
   const [error, setError] = useState('');
 
 
-    const signUp = async () => {
-      try {
-        const response = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        // navigation.navigate('SignIn');
-    } catch (err) {
-        setError(err.message);
-    }
-    const db = firebase.firestore();
 
-  if (db) {
-    db.collection('Users').add({
-       Lastname:lastname,
-       Firstname:firstname,
-       Email:email,
-       Password:password
-       
-    })
-     
-
-
-
-}
-  
-  }
 
   return (
     <ImageBackground style={styles.backgroundcontainer}>
@@ -71,8 +48,8 @@ export function SignUp(navigation) {
         placeholder={'Telephone'}
         placeholderTextColor={'#b3b3b3'}
         underlineColorAndroid='transparent'
-        onChangeText={setLastname}
-        value={lastname}
+        onChangeText={setEmail}
+        value={email}
         />  
 
         <TextInput
@@ -80,15 +57,15 @@ export function SignUp(navigation) {
         placeholder={'Email'}
         placeholderTextColor={'#b3b3b3'}
         underlineColorAndroid='transparent'
-        onChangeText={setLastname}
-        value={lastname}
+        onChangeText={setPassword}
+        value={password}
         /> 
 
                
           <View style={styles.check} >
        
         <RadioButton value="first" />
-        <Text  style={styles.Radiotext}>J'AI LU ET ACCEPTÉ LES CONDITIONS GÉNÉRALES D'UTILISATION ET LES MENTIONS LÉGALES NOTAMMENT LA MENTION RELATIVE AUX DONNÉES À CARACTÈRE PERSONNEL</Text>
+        <Text style={styles.Radiotext}>J'AI LU ET ACCEPTÉ LES CONDITIONS GÉNÉRALES D'UTILISATION ET LES MENTIONS LÉGALES NOTAMMENT LA MENTION RELATIVE AUX DONNÉES À CARACTÈRE PERSONNEL</Text>
       </View>
       <View style={styles.check}>
         
