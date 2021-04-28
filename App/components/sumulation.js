@@ -1,16 +1,18 @@
 import React ,{useState,useEffect}from 'react'
-import { StyleSheet,Button, Text,Alert, View,ImageBackground } from 'react-native';
+import { StyleSheet,Button, Text,Alert, View,ImageBackground,TouchableOpacity } from 'react-native';
 import {useHistory} from 'react-router-native'
 import Slider from "react-native-sliders";
-const image = { uri: "https://reactjs.org/logo-og.png" };
+const image = require('../images/photo1.jpg')
 
-export default function Login() {
+export default function Sumulation() {
     const [mt,setMt] = useState(4000)
     const [mois,setMois] = useState(12)
     const [mensu,setMensu] = useState(2463)
     const [interetGlobale,setInteretGlobale] = useState(0)
     const [interetParMois,setInteretParMois] = useState(0)
     const [fraisDossier, setFraisDossier] = useState(0)
+    const [Simulation, setSimulation] = useState("none")
+    const [Simulationdetail ,setSimulationdetail] = useState("flex")
     // const [mensu,setMensu] = useState(0)
     const history = useHistory()
     function calcAmortissment(mt,mois){
@@ -26,26 +28,48 @@ export default function Login() {
         var Amortissement = parseFloat((a + iParMois + frais).toFixed(2))
         setMensu(Amortissement)
     }
+
+    function showsimulateur() {
+        setSimulationdetail("flex")
+        setSimulation("none")
+
+    }
  
+    function showdetail() {
+        setSimulation("flex")
+        setSimulationdetail("none")
+    }
 
     return (
         <View style={styles.container}>
-        <ImageBackground source={image} style={styles.image}>
+        <ImageBackground source={image} style={styles.image} imageStyle={{opacity:0.5}}>
         
     
         <View style={styles.similationHolder}>
         <View style={styles.buttonHolder}>
-                    <Button style={styles.button}
+
+                    {/* <Button style={styles.button}
         title="Press me 1 "
         onPress={() => Alert.alert('Simple')}
-        />
-        <Button style={styles.button}
+        /> */}
+        <TouchableOpacity  onPress={() => showsimulateur()} style={styles.button}>
+           
+            <Text style={{color: '#330073'}}>Détail de la simulation </Text>
+            <Text style={{color: '#ee3b45', fontWeight:'bold', fontSize: 18}}>Crédit personnel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity  onPress={() => showdetail()} style={styles.button}>
+            <Text style={{color: '#330073'}}>Simulateur </Text>
+            <Text style={{color: '#ee3b45', fontWeight:'bold', fontSize: 18}}>Crédit personnel</Text>
+        </TouchableOpacity>
+        {/* <Button style={styles.button}
         title="Press me 2 "
         onPress={() => Alert.alert('Simple')}
-        />
+        /> */}
         </View>
           <View  style={styles.slider}>
+              <View style={{display: Simulation}}>
             <Text>Montant du credit</Text>
+            
             <Slider
                minimumValue={4000}
                maximumValue={500000}
@@ -57,7 +81,7 @@ export default function Login() {
                 }}
             />
             <Text>{mt.value}</Text>
-            </View>
+            
             
             <Text>Duree du credit</Text>
             <Slider
@@ -70,8 +94,11 @@ export default function Login() {
                 }}
             />
             <Text>{mois.value}</Text>
+            </View>
+            
+            <View style={{display : Simulationdetail}}>
+
             <Text>Mensualité</Text>
-          
             <Text>{mensu ? mensu : ''}</Text>
             <Text>intert globale :{interetGlobale ? interetGlobale : ''}</Text>
             <Text>interet par mois : {interetParMois ? interetParMois : ''}</Text>
@@ -79,6 +106,8 @@ export default function Login() {
             <Button title='reservation' onPress={() => {
                 history.push("/reservation");
             }} />
+            </View>
+            </View >
             </View>
             </ImageBackground>
         </View>
@@ -104,20 +133,29 @@ export default function Login() {
         },
         similationHolder : {
             flex: 0.5,
-            backgroundColor: "#5AA400",
+            backgroundColor: "#FFFFFF",
             marginTop: 'auto',
-            padding:20
+            padding:0
         },
         buttonHolder: {
             width : "100%",
             display : "flex",
             flexDirection : "row",
-            justifyContent : "space-evenly"
+           
         },
 
         button:{
-            height:40,
-            width : "50%"
-        }
+            
+            padding:20,
+            alignItems:'center',
+            backgroundColor:'white',
+            height:70,
+            width : 210     
+           },
+
+
+           detailsimulation: {
+            display:'none'
+           }
        
     });

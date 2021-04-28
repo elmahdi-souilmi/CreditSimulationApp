@@ -50,8 +50,7 @@ function register() {
   
 
   return (
-    <ImageBackground source={img} style={styles.backgroundcontainer} imageStyle= 
-    {{opacity:0.1}}>
+    <ImageBackground source={img} style={styles.backgroundcontainer} imageStyle={{opacity:0.1}}>
   
     <View  style={styles.logoContainer}>
     <View style={{flexDirection:"row",}}>

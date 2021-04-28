@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NativeRouter, Switch, Route } from 'react-router-native';
 import  SignUp from './components/Signup';
-import Simulation from './components/sumulation';
+import Sumulation from './components/Sumulation';
 
 
 
@@ -22,7 +22,7 @@ export default function App() {
     <NativeRouter>
       <Switch>
         {/* <Route exact path='/' component={SignUp} /> */}
-        <Route exact path='/' component={Simulation} />
+        <Route  path='/' exact component={Sumulation} />
 
       </Switch>
     </NativeRouter>
