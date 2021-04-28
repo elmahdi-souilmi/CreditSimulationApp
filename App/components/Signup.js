@@ -1,23 +1,50 @@
 import React, { useState } from 'react'
 import { RadioButton } from 'react-native-paper';
-import { StyleSheet, Text, View,Dimensions,Image, ImageBackground,TextInput,Button,Alert,TouchableOpacity, } from 'react-native';
+import { StyleSheet, Text, View,Dimensions,Image, ImageBackground,TextInput,TouchableOpacity} from 'react-native';
 import firebase from '../firebase/firebase'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const {width: WIDTH}= Dimensions.get('window')
 
 
 
 
-export function SignUp(navigation) {
-  
+export function SignUp({history}) {
+
+
+ 
 
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
+  const [phoneNumber, setphoneNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+
+ 
 
 
-
+function register() {
+    const storeData = async () => {
+      try {
+        await AsyncStorage.setItem('@storage_Key', firstname)
+      } catch (e) {
+        // saving error
+      }
+    }
+    storeData()
+  db.collection('users').add({
+       lastName:lastname,
+       firstName:firstname,
+       email:email,
+       telephone: phoneNumber
+  }).then(() => {
+    setEmail('');
+    setFirstname('');
+    setphoneNumber('');
+    setLastname('');
+    history.push("/Sumulation")
+  } )
+ 
+       }
+  
 
   return (
     <ImageBackground style={styles.backgroundcontainer}>
@@ -48,8 +75,8 @@ export function SignUp(navigation) {
         placeholder={'Telephone'}
         placeholderTextColor={'#b3b3b3'}
         underlineColorAndroid='transparent'
-        onChangeText={setEmail}
-        value={email}
+        onChangeText={setphoneNumber}
+        value={phoneNumber}
         />  
 
         <TextInput
@@ -57,32 +84,34 @@ export function SignUp(navigation) {
         placeholder={'Email'}
         placeholderTextColor={'#b3b3b3'}
         underlineColorAndroid='transparent'
-        onChangeText={setPassword}
-        value={password}
+        onChangeText={setEmail}
+        value={email}
         /> 
 
                
           <View style={styles.check} >
        
         <RadioButton value="first" />
-        <Text style={styles.Radiotext}>J'AI LU ET ACCEPTÉ LES CONDITIONS GÉNÉRALES D'UTILISATION ET LES MENTIONS LÉGALES NOTAMMENT LA MENTION RELATIVE AUX DONNÉES À CARACTÈRE PERSONNEL</Text>
+        <Text  style={styles.Radiotext}>J'AI LU ET ACCEPTÉ LES CONDITIONS GÉNÉRALES D'UTILISATION ET LES MENTIONS LÉGALES NOTAMMENT LA MENTION RELATIVE AUX DONNÉES À CARACTÈRE PERSONNEL</Text>
       </View>
       <View style={styles.check}>
         
-        <RadioButton value="first" />
+        <RadioButton value={true}
+        
+        />
         <Text style={styles.Radiotext}>J'ACCEPTE DE RECEVOIR LES OFFRES PROMOTIONNELLES D'EQDOM</Text>
       </View>
         
         
 
 
-{
+{/* {
             error ?
                 <Text style={{ color: 'red' }}>{error}</Text>
                 : null
-        }
+        } */}
         <TouchableOpacity style={styles.btnLogin}>
-         <Text style={styles.text}   onPress={() => signUp()}>SIMULER</Text>
+         <Text style={styles.text} onPress={() => register()}> SIMULER </Text>
      </TouchableOpacity>
 
      
@@ -97,9 +126,6 @@ export function SignUp(navigation) {
   );
 }
 
-export function Test(){
-    console.log('hola')
-}
 
 export default SignUp ;
 
