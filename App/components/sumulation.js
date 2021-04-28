@@ -35,11 +35,11 @@ export default function Login() {
     
         <View style={styles.similationHolder}>
         <View style={styles.buttonHolder}>
-                    <Button style={styles.button1}
+                    <Button style={styles.button}
         title="Press me 1 "
         onPress={() => Alert.alert('Simple')}
         />
-        <Button style={styles.button2}
+        <Button style={styles.button}
         title="Press me 2 "
         onPress={() => Alert.alert('Simple')}
         />
@@ -87,7 +87,8 @@ export default function Login() {
     const styles = StyleSheet.create({
         container: {
             flex: 1,
-            flexDirection: "column"
+            flexDirection: "column",
+            
         },
         image: {
             flex: 1,
@@ -104,14 +105,19 @@ export default function Login() {
         similationHolder : {
             flex: 0.5,
             backgroundColor: "#5AA400",
-            marginTop: 'auto'
+            marginTop: 'auto',
+            padding:20
         },
         buttonHolder: {
-            flexDirection: 'row'
+            width : "100%",
+            display : "flex",
+            flexDirection : "row",
+            justifyContent : "space-evenly"
         },
-        slider: {
-            flexDirection: 'row',
-            width: 
 
+        button:{
+            height:40,
+            width : "50%"
         }
+       
     });

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { RadioButton } from 'react-native-paper';
-import { StyleSheet, Text, View,Dimensions,Image, ImageBackground,TextInput,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View,Dimensions,Image, ImageBackground,TextInput,TouchableOpacity,CheckBox} from 'react-native';
 import firebase from '../firebase/firebase'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const {width: WIDTH}= Dimensions.get('window')
 
+const img = require('../images/photo1.jpg')
+const image = require('../images/id-card.png')
 
 
 
@@ -17,7 +19,8 @@ export function SignUp({history}) {
   const [firstname, setFirstname] = useState('');
   const [phoneNumber, setphoneNumber] = useState('');
   const [email, setEmail] = useState('');
-
+  const [isSelected, setSelection] = useState(false);
+  const [isChecked, setChecked] = useState(false);
  
 
 
@@ -47,12 +50,21 @@ function register() {
   
 
   return (
-    <ImageBackground style={styles.backgroundcontainer}>
+    <ImageBackground source={img} style={styles.backgroundcontainer} imageStyle= 
+    {{opacity:0.1}}>
   
     <View  style={styles.logoContainer}>
-       
-    <Image style={styles.logo} /> 
-    <Text style={styles.logoText}>SAISIR VOS COORDONNÉES </Text>  
+    <View style={{flexDirection:"row",}}>
+            <View style={{ backgroundColor:"#ee3b45", width: 65,height: 120, justifyContent: 'center', marginHorizontal:9 }}>
+                <Image source={image} style={{  resizeMode: "center", height: 60,width: 'auto',}}/>
+            </View>
+            <View style={{width: 340,paddingVertical:30}}>
+                <Text style={{color: '#ee3b45', fontWeight:'bold', fontSize: 20}}>MES COORDONNÉES</Text>
+                <Text style={{color: '#330073'}}>Renseigner les champs ci-dessous et passer à l'étape suivante !</Text>
+            </View>
+        </View>  
+    
+    <Text style={styles.logoText}></Text>  
     <TextInput
         style={styles.input}
         placeholder={'Prenom'}
@@ -88,28 +100,32 @@ function register() {
         value={email}
         /> 
 
-               
-          <View style={styles.check} >
-       
-        <RadioButton value="first" />
-        <Text  style={styles.Radiotext}>J'AI LU ET ACCEPTÉ LES CONDITIONS GÉNÉRALES D'UTILISATION ET LES MENTIONS LÉGALES NOTAMMENT LA MENTION RELATIVE AUX DONNÉES À CARACTÈRE PERSONNEL</Text>
+      <View style={styles.check} >
+          <View style={styles.checkbox}>
+ 
+          <CheckBox  value={isChecked}  onValueChange={setChecked}/>
+          </View >
+          <View style={{width:294}}>
+        <Text  style={styles.Radiotext}>J'AI LU ET ACCEAPTÉ LES CONDITIONS GÉNÉRALES D'UTILISATION ET LES MENTIONS LÉGALES NOTAMMENT LA MENTION RELATIVE AUX DONNÉES À CARACTÈRE PERSONNEL</Text>
+        </View>
       </View>
+   
       <View style={styles.check}>
-        
-        <RadioButton value={true}
-        
-        />
+         <View style={styles.checkbox}>
+          <CheckBox   value={isSelected} onValueChange={setSelection}/>
+          </View>
+
+        <View style={{width:360}}>
         <Text style={styles.Radiotext}>J'ACCEPTE DE RECEVOIR LES OFFRES PROMOTIONNELLES D'EQDOM</Text>
+        </View>
       </View>
+          
+      
         
         
 
 
-{/* {
-            error ?
-                <Text style={{ color: 'red' }}>{error}</Text>
-                : null
-        } */}
+
         <TouchableOpacity style={styles.btnLogin}>
          <Text style={styles.text} onPress={() => register()}> SIMULER </Text>
      </TouchableOpacity>
@@ -136,19 +152,16 @@ const styles = StyleSheet.create({
  logoContainer: {
     
    alignItems: 'center',
- 
+     width: 500,
+    
 },
 
- logo: {
-   width: 120,
-   height: 120
- },
+
  logoText:{
-    color: '#ee3b45',
-    fontSize:23,
-    fontWeight:'500',
-    marginTop: 30,
-    marginBottom: 40,
+  color: '#ee3b45',
+  fontSize:25,
+  fontWeight:'500',
+ marginBottom: 40,
    
     },
     input:{
@@ -159,11 +172,11 @@ const styles = StyleSheet.create({
         borderColor: "#d9d9d9",
         borderRadius: 25,
         fontSize:16,
-        paddingLeft: 45,
+        paddingLeft: 25,
         backgroundColor:'#ffffff',
-        color:'#e6e6e6',
+        color:'#000000',
      
-        marginHorizontal: 25
+        
         },
 
         inputArea:{
@@ -225,19 +238,28 @@ btnLogin:{
     },
 
     Radiotext: {
-        fontSize: 10,
+        fontSize: 8,
+        color:'#b3b3b3'
     },
     check:{
-        marginTop: 20,
+       borderColor: "#d9d9d9",
+        marginTop: 28,
+        marginBottom: -12,
+        alignItems: 'center',
         flexDirection: 'row',
         width: WIDTH - 50,
         backgroundColor:'#ffffff',
         borderRadius: 25,
-        height: 45,
-        padding: 5
+        height: 55,
+        padding: 5,
+        borderWidth: 1
 
 
-    }
+    },
+    checkbox:{
+     
+      padding:10
+     }
     
 
 
