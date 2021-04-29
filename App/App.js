@@ -7,7 +7,8 @@ import { NativeRouter, Switch, Route } from 'react-router-native';
 import  SignUp from './components/Signup';
 import Sumulation from './components/Sumulation';
 
-import Validate from './components/validate';
+import Validatemail from './components/validatemail';
+
 
 
 const Stack = createStackNavigator()
@@ -23,8 +24,9 @@ export default function App() {
     <NativeRouter>
       <Switch>
         {/* <Route exact path='/' component={SignUp} /> */}
-        <Route  path='/' exact component={Sumulation} />
-        {/* <Route  path='/' exact component={Validate} /> */}
+        {/* <Route  path='/' exact component={Sumulation} /> */}
+        <Route  path='/' exact component={Validatemail} />
+       
 
       </Switch>
     </NativeRouter>

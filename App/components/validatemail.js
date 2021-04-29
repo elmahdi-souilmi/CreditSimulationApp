@@ -32,11 +32,11 @@ export function Validate() {
     <View  style={styles.logoContainer}>
        
     <View style={{alignItems: 'center',}}>
-            <View style={{ backgroundColor:"#ee3b45", width: 95,height: 150, justifyContent: 'center',position:'relative', top:-60 }}>
+            <View style={{ backgroundColor:"#ee3b45", width: 95,height: 150, justifyContent: 'center',position:'relative', top:-40 }}>
                 <Image source={image} style={{  resizeMode: "center", height: 70,width: 'auto',}}/>
             </View>
             <View style={{  alignItems: 'center',width: 340,paddingVertical:50}}>
-                <Text style={{color: '#ee3b45', fontWeight:'bold', fontSize: 25}}>Vérification de votre identité</Text>
+                <Text style={{color: '#ee3b45', fontWeight:'bold', fontSize: 23}}>Vérification de votre identité</Text>
                 <Text style={{color: '#330073',fontSize: 18}}>Vous allez recevoir un mail </Text>
             </View>
         </View>
